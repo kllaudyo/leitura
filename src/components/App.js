@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Home from './Home';
 import './App.css';
 
 class App extends Component {
@@ -7,6 +8,7 @@ class App extends Component {
         const { posts } = this.props;
         return (
             <div className="App">
+                <Home />
                 { posts.filter( post => !post.delete ).map( post => {
                     return (
                         <div key={post.id}>
