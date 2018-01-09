@@ -1,0 +1,1 @@
+Este projeto trabalha com react, redux, react-redux e está focado no segundo projeto do programa NanoDegree Udacity
