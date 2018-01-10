@@ -8,6 +8,7 @@ const headers = {
 export function getAllCategories(){
     return fetch(`${api}/categories`, { headers })
         .then(response => response.json());
+        // .then(response => ({ categories } = response));
 }
 
 export function getPostsByCategory(category){

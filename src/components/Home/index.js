@@ -1,31 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {getAllPosts} from "../../utils/ServerApi";
+import { getAllPosts } from "../../utils/ServerApi";
+import { addPost } from "../../actions";
 
 class Home extends Component{
 
     componentDidMount(){
-        const { loadAllPosts } = this.props;
-        getAllPosts().then(response => loadAllPosts(response));
+        const { addAllPosts } = this.props;
+        getAllPosts().then(response => addAllPosts(response));
     }
 
     render(){
+        const { posts } = this.props;
         return (
             <div>
-                Hello Home
+                {posts.filter( post => !post.delete ).map( post => {
+                    return (
+                        <div key={post.id}>
+                            <h4>{post.title}</h4>
+                            <p>{post.body}</p>
+                            <hr />
+                        </div>
+                    )
+                })}
             </div>
         )
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    state,
+const mapStateToProps = ({ posts }, ownProps) => ({
+    posts,
     ownProps
 });
 
 const mapDispatchToProps = dispatch => ({
-    loadAllPosts : (posts) => {
-        console.log(JSON.stringify(posts));
+    addAllPosts(posts){
+        posts.map(post => dispatch(addPost({post})))
     }
 });
 
