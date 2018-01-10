@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import Home from './Home';
 import Categories from './Categories';
 import './App.css';
+import Post from "./Post";
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <Route exact path="/" render={ () => <Home />} />
-                <Route path="/categories" render={() => <Categories/>} />
+                <Route exact path="/" component={Home} />
+                <Route path="/categories" component={Categories} />
+                <Route path="/post/:id" component={Post} />
             </div>
         );
     }
