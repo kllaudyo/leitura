@@ -5,10 +5,10 @@ import { addPost } from "../../actions";
 
 class Home extends Component{
 
-    componentDidMount(){
-        const { addAllPosts } = this.props;
-        getAllPosts().then(response => addAllPosts(response));
-    }
+    // componentDidMount(){
+    //     const { addAllPosts } = this.props;
+    //     getAllPosts().then(response => addAllPosts(response));
+    // }
 
     render(){
         const { posts } = this.props;

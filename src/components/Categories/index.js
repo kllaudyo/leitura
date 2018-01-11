@@ -5,14 +5,14 @@ import { getAllCategories } from "../../utils/ServerApi";
 
 class Categories extends Component{
 
-    componentDidMount(){
-        const { addAllCategories } = this.props;
-        getAllCategories()
-            .then( response => {
-                const { categories } = response;
-                addAllCategories(categories)
-            });
-    }
+    // componentDidMount(){
+    //     const { addAllCategories } = this.props;
+    //     getAllCategories()
+    //         .then( response => {
+    //             const { categories } = response;
+    //             addAllCategories(categories)
+    //         });
+    // }
 
     render(){
         const { categories } = this.props;
