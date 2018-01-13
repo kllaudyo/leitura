@@ -6,24 +6,34 @@ import Categories from './Categories';
 import './App.css';
 import Post from "./Post";
 import {getAllCategories, getAllPosts} from "../utils/ServerApi";
-import {addCategory, addPost} from "../actions";
+import {initCategories, initPosts} from "../actions";
+import {NavBar, NavBrand, NavItem} from "./NavBar";
 
 class App extends Component {
 
     componentDidMount(){
 
-        const { addAllPosts, addAllCategories } = this.props;
-
-        getAllPosts()
-            .then(response => addAllPosts(response));
+        const { initCategories, initPosts } = this.props;
 
         getAllCategories()
-            .then( ({ categories }) => addAllCategories(categories));
+            .then( response => initCategories(response));
+
+        getAllPosts()
+            .then( response => initPosts(response));
+
     }
 
     render() {
+        console.log(this.props.categories);
+        const {categories} = this.props;
         return (
             <div className="App">
+
+                <NavBar>
+                    <NavBrand href="#" title="Prosa" />
+                    {categories.map(category => <NavItem action={category.name} />)}
+                </NavBar>
+
                 <Route exact path="/" render={() => <Home />} />
                 <Route path="/categories" render={() => <Categories />} />
                 <Route path="/post/:id" render={({match}) => <Post id={match.params.id} />} />
@@ -39,11 +49,11 @@ const mapStateToProps = ({ posts, categories }, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    addAllPosts(posts){
-        posts.map(post => dispatch(addPost({post})))
+    initCategories(categories){
+        dispatch(initCategories(categories));
     },
-    addAllCategories(categories){
-        categories.map(category => dispatch(addCategory({category})));
+    initPosts(posts){
+        dispatch(initPosts(posts));
     }
 });
 

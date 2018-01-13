@@ -18,7 +18,8 @@ export function getPostsByCategory(category){
 
 export function getAllPosts(){
     return fetch(`${api}/posts`, { headers })
-        .then(response => response.json());
+        .then(response => response.json())
+        .then(response => ({posts: response}));
 }
 
 export function insertPost(post){
